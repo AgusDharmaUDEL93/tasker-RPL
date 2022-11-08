@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import '../../../../core/utils/constants.dart';
 
@@ -29,7 +30,11 @@ class HomeAppBar extends StatelessWidget {
         ),
         Text(
           '${DateFormat('EEEE').format(DateTime.now())}, ${DateFormat('d').format(DateTime.now())}',
-          style: TextStyle(color: Colors.black),
+          style: GoogleFonts.poppins(
+            color: kDarkBlue,
+            fontWeight: FontWeight.w500,
+            fontSize: 18,
+          ),
         ),
         Container(
           decoration: BoxDecoration(
