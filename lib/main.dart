@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tasker/layers/core/utils/constants.dart';
-import 'package:tasker/route_generator.dart';
+import 'package:tasker/layers/route_generator.dart';
 
 void main() {
   runApp(const TaskerApp());
@@ -8,7 +8,7 @@ void main() {
 
 class TaskerApp extends StatelessWidget {
   const TaskerApp({super.key});
-
+  
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(

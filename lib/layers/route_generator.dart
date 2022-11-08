@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tasker/layers/core/utils/constants.dart';
-import 'layers/app/views/home/home_view.dart';
+import 'app/views/ui/home/home_view.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
