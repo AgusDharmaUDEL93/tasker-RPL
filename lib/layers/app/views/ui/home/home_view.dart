@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tasker/layers/app/views/ui/widgets/home_appbar.dart';
+import 'package:tasker/layers/app/views/ui/widgets/home_task_card_widget.dart';
 
 import '../../../../core/utils/constants.dart';
 
@@ -10,6 +11,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.transparent,
@@ -30,42 +32,26 @@ class HomePage extends StatelessWidget {
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              SizedBox(
-                height: 14,
-              ),
               Column(
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(10),
-                    child: Container(
-                      height: 90,
-                      width: MediaQuery.of(context).size.width,
-                      color: Colors.grey[200],
-                      child: Row(
-                        children: [
-                          Column(
-                            children: [
-                              Text('Title'),
-                              Text('Subtitle'),
-                            ],
-                          )
-                        ],
-                      ),
-                    ),
-                  )
-                  // ClipRRect(
-                  //   borderRadius: BorderRadius.circular(10),
-                  //   child: Container(
-                  //     color: Colors.grey[200],
-                  //     child: ListTile(
-                  //       minVerticalPadding: 14,
-                  //       title: Text('Create Detail Booking'),
-                  //       subtitle: Text(
-                  //           'Lorem ipsum dolor sit amet, consectetur adipiscing'),
-                  //       trailing: Icon(Icons.add),
-                  //     ),
-                  //   ),
-                  // )
+                children: const [
+                  SizedBox(height: 10),
+                  HomeTaskCardWidget(
+                    title: 'Book Cinema Tickets',
+                    description: 'Aasdnasidn',
+                    timeLeft: 2,
+                  ),
+                  SizedBox(height: 10),
+                  HomeTaskCardWidget(
+                    title: 'Book Cinema Tickets',
+                    description: 'Aasdnasidn',
+                    timeLeft: 3,
+                  ),
+                  SizedBox(height: 10),
+                  HomeTaskCardWidget(
+                    title: 'Book Cinema Tickets',
+                    description: 'Aasdnasidn',
+                    timeLeft: 6,
+                  ),
                 ],
               ),
             ],
