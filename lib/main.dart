@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tasker/layers/core/utils/constants.dart';
-import 'package:tasker/layers/route_generator.dart';
+import 'package:tasker/layers/core/utils/route_generator.dart';
 
 void main() {
   runApp(const TaskerApp());
