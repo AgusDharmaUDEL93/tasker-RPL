@@ -8,10 +8,11 @@ void main() {
 
 class TaskerApp extends StatelessWidget {
   const TaskerApp({super.key});
-  
+
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Tasker',
       onGenerateRoute: RouteGenerator.generateRoute,
       initialRoute: kHomeRoute,
