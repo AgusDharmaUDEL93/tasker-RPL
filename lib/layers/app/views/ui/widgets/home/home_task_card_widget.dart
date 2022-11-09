@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../../../core/utils/constants.dart';
+import '../../../../../core/utils/constants.dart';
 
 class HomeTaskCardWidget extends StatefulWidget {
   final String title;
@@ -20,6 +20,8 @@ class HomeTaskCardWidget extends StatefulWidget {
 }
 
 class _HomeTaskCardWidgetState extends State<HomeTaskCardWidget> {
+  bool isCollapsed = false;
+
   @override
   Widget build(BuildContext context) {
     return Theme(
@@ -92,20 +94,26 @@ class _HomeTaskCardWidgetState extends State<HomeTaskCardWidget> {
                 ),
                 Text(
                   '${widget.timeLeft} days left',
-                  style: GoogleFonts.poppins(color: kLightGrey),
+                  style: GoogleFonts.poppins(color: kDarkGrey),
                 ),
               ],
             ),
-            trailing: const Padding(
-              padding: EdgeInsets.only(right: 15.0),
-              child: Icon(Icons.keyboard_arrow_down_outlined),
+            trailing: Padding(
+              padding: const EdgeInsets.only(right: 15.0),
+              child: isCollapsed
+                  ? Icon(Icons.keyboard_arrow_up_outlined)
+                  : Icon(Icons.keyboard_arrow_down_outlined),
             ),
             children: <Widget>[
               Center(
                 child: Text(widget.description),
               )
             ],
-            onExpansionChanged: (bool expanded) {},
+            onExpansionChanged: (bool expanded) {
+              setState(() {
+                isCollapsed = !isCollapsed;
+              });
+            },
           ),
         ),
       ),

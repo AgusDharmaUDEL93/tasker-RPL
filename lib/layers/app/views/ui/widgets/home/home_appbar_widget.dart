@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
-import '../../../../core/utils/constants.dart';
+import '../../../../../core/utils/constants.dart';
 
 class HomeAppBar extends StatelessWidget {
   const HomeAppBar({super.key});
