@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tasker/layers/app/models/task/task_model.dart';
 import 'package:tasker/layers/app/views/ui/widgets/manage_task/manage_task_appbar_widget.dart';
-import 'package:tasker/layers/app/views/ui/widgets/manage_task/manage_task_task_textfield.dart';
+import 'package:tasker/layers/app/views/ui/widgets/manage_task/manage_task_textfield.dart';
 import 'package:tasker/layers/core/utils/constants.dart';
 import '../../../models/task/boxes.dart';
 import '../widgets/manage_task/manage_task_datepicker_field.dart';
