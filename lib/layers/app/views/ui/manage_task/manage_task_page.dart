@@ -17,6 +17,7 @@ class ManageTaskPage extends StatefulWidget {
 }
 
 class _ManageTaskPageState extends State<ManageTaskPage> {
+  final _formKey = GlobalKey<FormState>();
   var dateTime = DateTime.now();
   TextEditingController titleController = TextEditingController();
   TextEditingController descController = TextEditingController();
@@ -45,54 +46,58 @@ class _ManageTaskPageState extends State<ManageTaskPage> {
         child: SingleChildScrollView(
           child: SizedBox(
             height: MediaQuery.of(context).size.height * 0.85,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ManageTaskDateWidget(dateTime: dateTime, refresh: refresh),
-                const SizedBox(height: 50),
-                ManageTaskTextFieldWidget(
-                    labelText: 'Task Title', controller: titleController),
-                const SizedBox(height: 50),
-                ManageTaskTextFieldWidget(
-                    labelText: 'Description', controller: descController),
-                const SizedBox(height: 90),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: kDarkBlue,
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 15, horizontal: 90),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
+            child: Form(
+              key: _formKey,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ManageTaskDateWidget(dateTime: dateTime, refresh: refresh),
+                  const SizedBox(height: 50),
+                  ManageTaskTextFieldWidget(
+                      labelText: 'Task Title', controller: titleController),
+                  const SizedBox(height: 50),
+                  ManageTaskTextFieldWidget(
+                      labelText: 'Description', controller: descController),
+                  const SizedBox(height: 90),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: kDarkBlue,
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 15, horizontal: 90),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                      elevation: 0,
                     ),
-                    elevation: 0,
-                  ),
-                  onPressed: () {
-                    print(widget.task);
-                    if (isEditing) {
-                      editTask(
-                        widget.task!,
-                        titleController.text,
-                        descController.text,
-                        dateTime,
-                      );
-                    } else {
-                      addTask(
-                        titleController.text,
-                        descController.text,
-                        dateTime,
-                      );
-                    }
-                    Navigator.pop(context);
-                  },
-                  child: Text(
-                    isEditing ? 'Save Task' : 'Create Task',
-                    style: GoogleFonts.poppins(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 16,
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        if (isEditing) {
+                          editTask(
+                            widget.task!,
+                            titleController.text,
+                            descController.text,
+                            dateTime,
+                          );
+                        } else {
+                          addTask(
+                            titleController.text,
+                            descController.text,
+                            dateTime,
+                          );
+                        }
+                        Navigator.pop(context);
+                      }
+                    },
+                    child: Text(
+                      isEditing ? 'Save Task' : 'Create Task',
+                      style: GoogleFonts.poppins(
+                        fontWeight: FontWeight.w500,
+                        fontSize: 16,
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
@@ -110,7 +115,8 @@ class _ManageTaskPageState extends State<ManageTaskPage> {
     final task = TaskModel()
       ..title = title
       ..description = desc
-      ..expirationDate = expirationDate;
+      ..expirationDate = expirationDate
+      ..isDone = false;
 
     final box = Boxes.getTasks();
 
@@ -121,6 +127,7 @@ class _ManageTaskPageState extends State<ManageTaskPage> {
     task.title = title;
     task.description = desc;
     task.expirationDate = expirationDate;
+    task.isDone = task.isDone;
 
     task.save();
   }

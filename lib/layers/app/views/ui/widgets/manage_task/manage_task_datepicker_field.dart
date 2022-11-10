@@ -64,8 +64,8 @@ class _ManageTaskDateWidgetState extends State<ManageTaskDateWidget> {
               ).then((value) => setState(() {
                     if (value != null) {
                       widget.dateTime = value;
+                      widget.refresh(value);
                     }
-                    widget.refresh(value);
                   }));
             },
             child: Padding(

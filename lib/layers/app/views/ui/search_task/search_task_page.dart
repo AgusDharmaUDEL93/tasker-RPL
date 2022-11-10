@@ -4,11 +4,11 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:tasker/layers/app/views/ui/widgets/manage_task/manage_task_appbar_widget.dart';
 import 'package:tasker/layers/core/utils/constants.dart';
+import 'package:tasker/layers/app/views/ui/widgets/task_card/task_card_widget.dart';
 
 import '../../../models/task/boxes.dart';
 import '../../../models/task/task_model.dart';
 import '../widgets/home/home_add_first_task_widget.dart';
-import '../widgets/home/home_task_card_widget.dart';
 import '../widgets/search_task/search_not_found_widget.dart';
 
 class SearchPage extends StatefulWidget {
@@ -25,7 +25,7 @@ class _SearchPageState extends State<SearchPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kPlainWhite,
-      appBar: ManageTaskAppBar(title: 'Search Task'),
+      appBar: const ManageTaskAppBar(title: 'Search Task'),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10.0),
         child: SingleChildScrollView(
@@ -93,7 +93,7 @@ class _SearchPageState extends State<SearchPage> {
                       itemCount: tasks.length,
                       itemBuilder: (BuildContext context, int index) {
                         final task = tasks[index];
-                        return HomeTaskCardWidget(task: task);
+                        return TaskCardWidget(task: task);
                       },
                       separatorBuilder: (context, index) {
                         return const SizedBox(height: 12);

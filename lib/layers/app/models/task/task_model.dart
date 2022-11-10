@@ -12,4 +12,7 @@ class TaskModel extends HiveObject {
 
   @HiveField(2)
   late DateTime expirationDate;
+
+  @HiveField(3)
+  late bool isDone;
 }

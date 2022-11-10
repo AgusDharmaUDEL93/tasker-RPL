@@ -33,6 +33,12 @@ class ManageTaskTextFieldWidgetState extends State<ManageTaskTextFieldWidget> {
         ),
         const SizedBox(height: 10),
         TextFormField(
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return 'Please input some text';
+            }
+            return null;
+          },
           controller: widget.controller,
           style: GoogleFonts.poppins(
             fontSize: 18,
