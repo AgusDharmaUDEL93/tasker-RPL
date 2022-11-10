@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 // Routes
 const String kHomeRoute = '/';
-const String kCreateTaskRoute = '/create-task';
+const String kManageTaskRoute = '/create-task';
 
 // Color Pallete
 const Color kPrimaryColor = Color(0xFF3580FF);

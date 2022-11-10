@@ -1,8 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:tasker/layers/app/models/task/task_model.dart';
 import 'package:tasker/layers/core/utils/constants.dart';
 import 'package:tasker/layers/core/utils/route_generator.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Hive.initFlutter();
+
+  Hive.registerAdapter(TaskModelAdapter());
+  await Hive.openBox<TaskModel>('taskmodel');
+
   runApp(const TaskerApp());
 }
 
