@@ -38,11 +38,7 @@ class _HomePageState extends State<HomePage> {
         child: SvgPicture.asset('assets/icons/add-icon.svg'),
       ),
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-        title: const HomeAppBar(),
-      ),
+      appBar: HomeAppBar(),
       body: SizedBox(
         width: MediaQuery.of(context).size.width,
         child: Padding(

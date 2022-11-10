@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tasker/layers/app/models/task/task_model.dart';
 import 'package:tasker/layers/app/views/ui/manage_task/manage_task_page.dart';
+import 'package:tasker/layers/app/views/ui/search_task/search_task_page.dart';
 import 'package:tasker/layers/core/utils/constants.dart';
 import '../../app/views/ui/home/home_page.dart';
 
@@ -16,6 +17,8 @@ class RouteGenerator {
               builder: (context) => ManageTaskPage(task: args));
         }
         return MaterialPageRoute(builder: (context) => const ManageTaskPage());
+      case kSearchTaskRoute:
+        return MaterialPageRoute(builder: (_) => const SearchPage());
       default:
         return errorRoute();
     }

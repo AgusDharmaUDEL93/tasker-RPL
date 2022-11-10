@@ -17,8 +17,8 @@ class AddFirstTaskWidget extends StatelessWidget {
         );
       },
       child: Container(
-        margin: EdgeInsets.only(top: 10),
-        height: 90,
+        margin: const EdgeInsets.only(top: 10),
+        height: 80,
         width: double.infinity,
         decoration: BoxDecoration(
           color: kDarkBlue,

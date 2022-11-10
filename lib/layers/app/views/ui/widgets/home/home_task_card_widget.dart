@@ -3,6 +3,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tasker/layers/app/models/task/task_model.dart';
 import '../../../../../core/utils/constants.dart';
+import '../../../../models/task/boxes.dart';
 
 class HomeTaskCardWidget extends StatefulWidget {
   final TaskModel task;
@@ -36,7 +37,9 @@ class _HomeTaskCardWidgetState extends State<HomeTaskCardWidget> {
             label: 'Edit',
           ),
           SlidableAction(
-            onPressed: (context) {},
+            onPressed: (context) {
+              deleteTask(widget.task);
+            },
             foregroundColor: Colors.red,
             icon: Icons.delete,
             label: 'Delete',
@@ -151,6 +154,10 @@ class _HomeTaskCardWidgetState extends State<HomeTaskCardWidget> {
         ),
       ),
     );
+  }
+
+  deleteTask(TaskModel task) {
+    task.delete();
   }
 
   int daysBetween(DateTime from, DateTime to) {
