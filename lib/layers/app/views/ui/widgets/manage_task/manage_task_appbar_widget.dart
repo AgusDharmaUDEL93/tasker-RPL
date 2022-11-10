@@ -4,8 +4,8 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../../core/utils/constants.dart';
 
-class CreateTaskAppBar extends StatefulWidget implements PreferredSizeWidget {
-  CreateTaskAppBar({super.key, required this.title})
+class ManageTaskAppBar extends StatefulWidget implements PreferredSizeWidget {
+  ManageTaskAppBar({super.key, required this.title})
       : preferredSize = Size.fromHeight(kToolbarHeight);
 
   final String title;
@@ -14,10 +14,10 @@ class CreateTaskAppBar extends StatefulWidget implements PreferredSizeWidget {
   final Size preferredSize; // default is 56.0
 
   @override
-  State<CreateTaskAppBar> createState() => _CreateTaskAppBarState();
+  State<ManageTaskAppBar> createState() => _ManageTaskAppBarState();
 }
 
-class _CreateTaskAppBarState extends State<CreateTaskAppBar> {
+class _ManageTaskAppBarState extends State<ManageTaskAppBar> {
   @override
   Widget build(BuildContext context) {
     return AppBar(

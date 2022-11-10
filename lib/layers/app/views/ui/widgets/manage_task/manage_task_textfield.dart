@@ -3,8 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../../core/utils/constants.dart';
 
-class CreateTaskTextFieldWidget extends StatefulWidget {
-  const CreateTaskTextFieldWidget({
+class ManageTaskTextFieldWidget extends StatefulWidget {
+  const ManageTaskTextFieldWidget({
     super.key,
     required this.labelText,
     required this.controller,
@@ -14,11 +14,11 @@ class CreateTaskTextFieldWidget extends StatefulWidget {
   final TextEditingController controller;
 
   @override
-  State<CreateTaskTextFieldWidget> createState() =>
-      CreateTaskTextFieldWidgetState();
+  State<ManageTaskTextFieldWidget> createState() =>
+      ManageTaskTextFieldWidgetState();
 }
 
-class CreateTaskTextFieldWidgetState extends State<CreateTaskTextFieldWidget> {
+class ManageTaskTextFieldWidgetState extends State<ManageTaskTextFieldWidget> {
   @override
   Widget build(BuildContext context) {
     return Column(

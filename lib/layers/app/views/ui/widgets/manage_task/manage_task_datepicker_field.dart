@@ -5,8 +5,8 @@ import 'package:intl/intl.dart';
 
 import '../../../../../core/utils/constants.dart';
 
-class CreateTaskDateWidget extends StatefulWidget {
-  CreateTaskDateWidget({
+class ManageTaskDateWidget extends StatefulWidget {
+  ManageTaskDateWidget({
     super.key,
     required this.dateTime,
     required this.refresh,
@@ -16,10 +16,10 @@ class CreateTaskDateWidget extends StatefulWidget {
   Function refresh;
 
   @override
-  State<CreateTaskDateWidget> createState() => _CreateTaskDateWidgetState();
+  State<ManageTaskDateWidget> createState() => _ManageTaskDateWidgetState();
 }
 
-class _CreateTaskDateWidgetState extends State<CreateTaskDateWidget> {
+class _ManageTaskDateWidgetState extends State<ManageTaskDateWidget> {
   @override
   Widget build(BuildContext context) {
     return Row(

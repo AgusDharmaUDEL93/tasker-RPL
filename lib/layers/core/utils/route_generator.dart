@@ -13,9 +13,9 @@ class RouteGenerator {
         if (settings.arguments != null) {
           final args = settings.arguments as TaskModel;
           return MaterialPageRoute(
-              builder: (context) => CreateTaskPage(task: args));
+              builder: (context) => ManageTaskPage(task: args));
         }
-        return MaterialPageRoute(builder: (context) => const CreateTaskPage());
+        return MaterialPageRoute(builder: (context) => const ManageTaskPage());
       default:
         return errorRoute();
     }

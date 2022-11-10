@@ -7,16 +7,16 @@ import 'package:tasker/layers/core/utils/constants.dart';
 import '../../../models/task/boxes.dart';
 import '../widgets/manage_task/manage_task_datepicker_field.dart';
 
-class CreateTaskPage extends StatefulWidget {
-  const CreateTaskPage({super.key, this.task});
+class ManageTaskPage extends StatefulWidget {
+  const ManageTaskPage({super.key, this.task});
 
   final TaskModel? task;
 
   @override
-  State<CreateTaskPage> createState() => _CreateTaskPageState();
+  State<ManageTaskPage> createState() => _ManageTaskPageState();
 }
 
-class _CreateTaskPageState extends State<CreateTaskPage> {
+class _ManageTaskPageState extends State<ManageTaskPage> {
   var dateTime = DateTime.now();
   TextEditingController titleController = TextEditingController();
   TextEditingController descController = TextEditingController();
@@ -39,7 +39,7 @@ class _CreateTaskPageState extends State<CreateTaskPage> {
   Widget build(BuildContext context) {
     isEditing = widget.task != null;
     return Scaffold(
-      appBar: CreateTaskAppBar(title: isEditing ? 'Edit Task' : 'Add Task'),
+      appBar: ManageTaskAppBar(title: isEditing ? 'Edit Task' : 'Add Task'),
       body: Padding(
         padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
         child: SingleChildScrollView(
@@ -48,12 +48,12 @@ class _CreateTaskPageState extends State<CreateTaskPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                CreateTaskDateWidget(dateTime: dateTime, refresh: refresh),
+                ManageTaskDateWidget(dateTime: dateTime, refresh: refresh),
                 const SizedBox(height: 50),
-                CreateTaskTextFieldWidget(
+                ManageTaskTextFieldWidget(
                     labelText: 'Task Title', controller: titleController),
                 const SizedBox(height: 50),
-                CreateTaskTextFieldWidget(
+                ManageTaskTextFieldWidget(
                     labelText: 'Description', controller: descController),
                 const SizedBox(height: 90),
                 ElevatedButton(
