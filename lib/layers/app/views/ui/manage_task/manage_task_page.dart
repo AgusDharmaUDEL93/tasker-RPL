@@ -68,12 +68,21 @@ class _ManageTaskPageState extends State<ManageTaskPage> {
                   ),
                   onPressed: () {
                     print(widget.task);
-                    // addTask(
-                    //   titleController.text,
-                    //   descController.text,
-                    //   dateTime,
-                    // );
-                    // Navigator.pop(context);
+                    if (isEditing) {
+                      editTask(
+                        widget.task!,
+                        titleController.text,
+                        descController.text,
+                        dateTime,
+                      );
+                    } else {
+                      addTask(
+                        titleController.text,
+                        descController.text,
+                        dateTime,
+                      );
+                    }
+                    Navigator.pop(context);
                   },
                   child: Text(
                     isEditing ? 'Save Task' : 'Create Task',
@@ -106,5 +115,13 @@ class _ManageTaskPageState extends State<ManageTaskPage> {
     final box = Boxes.getTasks();
 
     box.add(task);
+  }
+
+  editTask(TaskModel task, String title, String desc, DateTime expirationDate) {
+    task.title = title;
+    task.description = desc;
+    task.expirationDate = expirationDate;
+
+    task.save();
   }
 }
