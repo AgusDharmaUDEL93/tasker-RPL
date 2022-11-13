@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tasker/layers/locator.dart';
+import 'package:tasker/layers/core/injector/injector.dart';
 
 Future<void> main() async {
   setupLocator();
