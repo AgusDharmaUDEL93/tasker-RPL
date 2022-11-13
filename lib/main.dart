@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:tasker/layers/locator.dart';
 
 Future<void> main() async {
+  setupLocator();
+  WidgetsFlutterBinding.ensureInitialized();
+
   runApp(const TaskerApp());
 }
 
