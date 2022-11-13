@@ -1,4 +1,5 @@
 import 'package:hive/hive.dart';
+import 'package:tasker/layers/data/datasources/local/tables/table_task.dart';
 import 'package:tasker/layers/data/datasources/save_task_datasource.dart';
 import 'package:tasker/layers/domain/entities/task_entity.dart';
 
@@ -8,7 +9,13 @@ class SaveTaskLocalDatasourceImpl implements SaveTaskDatasource {
 
   @override
   bool call(TaskEntity task) {
-    _box.put(task.title.toLowerCase(), task);
+    final newTask = TaskTable(
+      title: task.title,
+      description: task.description,
+      expirationDate: task.expirationDate,
+      isDone: task.isDone,
+    );
+    _box.put(task.title.toLowerCase(), newTask);
     return true;
   }
 }
