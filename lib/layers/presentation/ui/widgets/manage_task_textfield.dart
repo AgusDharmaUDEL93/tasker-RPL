@@ -57,7 +57,7 @@ class ManageTaskTextFieldWidgetState extends State<ManageTaskTextFieldWidget> {
             errorBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(16),
               borderSide: const BorderSide(
-                color: kDarkGrey,
+                color: kPrimaryColor,
               ),
             ),
             focusedBorder: OutlineInputBorder(

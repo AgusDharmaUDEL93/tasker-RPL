@@ -12,6 +12,7 @@ const Color kPrimaryColor = Color(0xFFF05454);
 const Color kDarkGrey = Color(0xFF848A94);
 const Color kLightGrey = Color(0xFFbebebe);
 const Color kCardBackground = Color(0xFFEEEEEE);
+const Color kCardCollapsedBackground = Color(0xFFdbd9d9);
 const Color kMainBackground = Color(0xFFFFFFFF);
 
 // Dark Mode

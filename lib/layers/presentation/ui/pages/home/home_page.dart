@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/injector/injector.dart';
 import '../../../../core/utils/constants.dart';
+import '../../widgets/home_add_first_task_widget.dart';
 import '../../widgets/home_appbar_widget.dart';
 
 class HomePage extends StatefulWidget {
@@ -61,15 +62,18 @@ class _HomePageState extends State<HomePage> {
                 AnimatedBuilder(
                   animation: taskController,
                   builder: (context, child) {
-                    return ListView.builder(
-                      physics: const BouncingScrollPhysics(),
-                      shrinkWrap: true,
-                      itemCount: taskController.tasksList.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return TaskCardWidget(
-                            task: taskController.tasksList[index]);
-                      },
-                    );
+                    if (taskController.tasksList.length > 0) {
+                      return ListView.builder(
+                        physics: const BouncingScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: taskController.tasksList.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return TaskCardWidget(
+                              task: taskController.tasksList[index]);
+                        },
+                      );
+                    }
+                    return const AddFirstTaskWidget();
                   },
                 ),
                 const SizedBox(height: 15),
@@ -79,29 +83,5 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     );
-    // Scaffold(
-    //   body: SingleChildScrollView(
-    //     child: Column(
-    //       children: [
-    //         TextFormField(
-    //           controller: _titleController,
-    //         ),
-    //         ElevatedButton(
-    //           child: Text('teste'),
-    //           onPressed: () {
-    //             taskController.saveTask(
-    //               TaskEntity(
-    //                 title: _titleController.text,
-    //                 description: 'teste',
-    //                 expirationDate: DateTime.now(),
-    //                 isDone: false,
-    //               ),
-    //             );
-    //           },
-    //         ),
-    //       ],
-    //     ),
-    //   ),
-    // );
   }
 }
