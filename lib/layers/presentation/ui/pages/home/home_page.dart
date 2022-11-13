@@ -45,12 +45,18 @@ class _HomePageState extends State<HomePage> {
                 );
               },
             ),
-            ListView.builder(
-              physics: const BouncingScrollPhysics(),
-              shrinkWrap: true,
-              itemCount: _taskController.tasksList.length,
-              itemBuilder: (BuildContext context, int index) {
-                return TaskCardWidget(task: _taskController.tasksList[index]);
+            AnimatedBuilder(
+              animation: _taskController,
+              builder: (context, child) {
+                return ListView.builder(
+                  physics: const BouncingScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: _taskController.tasksList.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return TaskCardWidget(
+                        task: _taskController.tasksList[index]);
+                  },
+                );
               },
             ),
           ],
