@@ -1,9 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:tasker/layers/domain/entities/task_entity.dart';
 import 'package:tasker/layers/domain/usecases/delete_task/delete_task_usecase.dart';
 import 'package:tasker/layers/domain/usecases/get_all_tasks/get_all_tasks_usecase.dart';
 import 'package:tasker/layers/domain/usecases/save_task/save_task_usecase.dart';
 
-class TaskController {
+class TaskController extends ChangeNotifier {
   final GetAllTasksUsecase _getAllTasksUsecase;
   final DeleteTaskUsecase _deleteTaskUsecase;
   final SaveTaskUsecase _saveTaskUsecase;
@@ -17,13 +18,22 @@ class TaskController {
 
   void getAllTasks() {
     tasksList = _getAllTasksUsecase();
+    notifyListeners();
   }
 
-  bool saveTask(TaskEntity task) {
-    return _saveTaskUsecase(task);
+  void saveTask(TaskEntity task) {
+    final isSaved = _saveTaskUsecase(task);
+    if (isSaved) {
+      tasksList.add(task);
+      notifyListeners();
+    }
   }
 
-  bool deleteTask(String title) {
-    return _deleteTaskUsecase(title);
+  void deleteTask(String title) {
+    final isDeleted = _deleteTaskUsecase(title);
+    if (isDeleted) {
+      tasksList.removeWhere((e) => e.title == title);
+      notifyListeners();
+    }
   }
 }
