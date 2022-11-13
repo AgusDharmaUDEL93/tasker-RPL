@@ -1,8 +1,10 @@
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:tasker/layers/core/injector/injector.dart';
 import 'package:tasker/layers/domain/entities/task_entity.dart';
 import 'package:flutter/material.dart';
 
+import '../../../core/utils/constants.dart';
 import '../../controllers/task_controller.dart';
 
 class TaskCardWidget extends StatefulWidget {
@@ -33,6 +35,7 @@ class _TaskCardWidgetState extends State<TaskCardWidget> {
             foregroundColor: Colors.blue,
             icon: Icons.edit,
             label: 'Edit',
+            backgroundColor: kMainBackground,
           ),
           SlidableAction(
             onPressed: (context) {
@@ -41,6 +44,7 @@ class _TaskCardWidgetState extends State<TaskCardWidget> {
             foregroundColor: Colors.red,
             icon: Icons.delete,
             label: 'Delete',
+            backgroundColor: kMainBackground,
           ),
         ],
       ),
@@ -81,12 +85,22 @@ class _TaskCardWidgetState extends State<TaskCardWidget> {
                   ),
                 ],
               ),
-              collapsedBackgroundColor: Colors.grey[100],
-              backgroundColor: Colors.grey[300],
+              collapsedBackgroundColor: kCardBackground,
+              backgroundColor: kCardBackground,
               collapsedTextColor: Colors.black,
               textColor: Colors.black,
               title: Text(
                 widget.task.title,
+                style: GoogleFonts.poppins(
+                  color: kPrimaryColor,
+                  fontWeight: FontWeight.w500,
+                  fontSize: 14,
+                  decoration: widget.task.isDone
+                      ? TextDecoration.lineThrough
+                      : TextDecoration.none,
+                  decorationColor: Colors.black,
+                  decorationThickness: 2,
+                ),
               ),
               childrenPadding: const EdgeInsets.symmetric(vertical: 10),
               subtitle: Row(
@@ -126,6 +140,7 @@ class _TaskCardWidgetState extends State<TaskCardWidget> {
                   ),
                   Text(
                     widget.task.isDone ? 'Done' : '${difference} days left',
+                    style: GoogleFonts.poppins(color: kDarkGrey),
                   ),
                 ],
               ),
@@ -143,6 +158,9 @@ class _TaskCardWidgetState extends State<TaskCardWidget> {
                         padding: const EdgeInsets.symmetric(horizontal: 20),
                         child: Text(
                           widget.task.description,
+                          style: GoogleFonts.poppins(
+                            color: kPrimaryColor,
+                          ),
                         ),
                       ),
                     ),

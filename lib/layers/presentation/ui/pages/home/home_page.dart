@@ -1,9 +1,13 @@
+import 'package:flutter_svg/svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:tasker/layers/domain/entities/task_entity.dart';
 import 'package:tasker/layers/presentation/controllers/task_controller.dart';
 import 'package:tasker/layers/presentation/ui/widgets/task_card_widget.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/injector/injector.dart';
+import '../../../../core/utils/constants.dart';
+import '../../widgets/home_appbar_widget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -26,42 +30,76 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            TextFormField(
-              controller: _titleController,
-            ),
-            ElevatedButton(
-              child: Text('teste'),
-              onPressed: () {
-                taskController.saveTask(
-                  TaskEntity(
-                    title: _titleController.text,
-                    description: 'teste',
-                    expirationDate: DateTime.now(),
-                    isDone: false,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        elevation: 0,
+        backgroundColor: kPrimaryColor,
+        child: SvgPicture.asset('assets/icons/add-icon.svg'),
+      ),
+      backgroundColor: kMainBackground,
+      appBar: const HomeAppBar(),
+      body: SizedBox(
+        width: MediaQuery.of(context).size.width,
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+          child: SingleChildScrollView(
+            physics: const BouncingScrollPhysics(),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'In Progress',
+                  style: GoogleFonts.poppins(
+                    fontSize: 20,
+                    color: kPrimaryColor,
+                    fontWeight: FontWeight.w600,
                   ),
-                );
-              },
-            ),
-            AnimatedBuilder(
-              animation: taskController,
-              builder: (context, child) {
-                return ListView.builder(
-                  physics: const BouncingScrollPhysics(),
-                  shrinkWrap: true,
-                  itemCount: taskController.tasksList.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return TaskCardWidget(
-                        task: taskController.tasksList[index]);
+                ),
+                const SizedBox(height: 15),
+                AnimatedBuilder(
+                  animation: taskController,
+                  builder: (context, child) {
+                    return ListView.builder(
+                      physics: const BouncingScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: taskController.tasksList.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return TaskCardWidget(
+                            task: taskController.tasksList[index]);
+                      },
+                    );
                   },
-                );
-              },
+                ),
+                const SizedBox(height: 15),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );
+    // Scaffold(
+    //   body: SingleChildScrollView(
+    //     child: Column(
+    //       children: [
+    //         TextFormField(
+    //           controller: _titleController,
+    //         ),
+    //         ElevatedButton(
+    //           child: Text('teste'),
+    //           onPressed: () {
+    //             taskController.saveTask(
+    //               TaskEntity(
+    //                 title: _titleController.text,
+    //                 description: 'teste',
+    //                 expirationDate: DateTime.now(),
+    //                 isDone: false,
+    //               ),
+    //             );
+    //           },
+    //         ),
+    //       ],
+    //     ),
+    //   ),
+    // );
   }
 }
