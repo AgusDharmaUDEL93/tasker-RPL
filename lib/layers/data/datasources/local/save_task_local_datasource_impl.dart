@@ -15,7 +15,10 @@ class SaveTaskLocalDatasourceImpl implements SaveTaskDatasource {
       expirationDate: task.expirationDate,
       isDone: task.isDone,
     );
-    _box.put(task.title.toLowerCase(), newTask);
+    if (_box.containsKey(task.title)) {
+      return false;
+    }
+    _box.put(task.title, newTask);
     return true;
   }
 }
