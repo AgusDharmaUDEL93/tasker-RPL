@@ -31,7 +31,9 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushNamed(context, kManageTaskRoute);
+        },
         elevation: 0,
         backgroundColor: kPrimaryColor,
         child: SvgPicture.asset('assets/icons/add-icon.svg'),
