@@ -12,7 +12,7 @@ migrate_working_dir/
 windows/
 macos/
 linux/
-lib/.clean_arch_test
+lib/clean_arch_test
 
 # IntelliJ related
 *.iml

@@ -1,30 +1,31 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'task_model.dart';
+part of 'table_task.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class TaskModelAdapter extends TypeAdapter<TaskModel> {
+class TaskTableAdapter extends TypeAdapter<TaskTable> {
   @override
   final int typeId = 0;
 
   @override
-  TaskModel read(BinaryReader reader) {
+  TaskTable read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return TaskModel()
-      ..title = fields[0] as String
-      ..description = fields[1] as String
-      ..expirationDate = fields[2] as DateTime
-      ..isDone = fields[3] as bool;
+    return TaskTable(
+      title: fields[0] as String,
+      description: fields[1] as String,
+      expirationDate: fields[2] as DateTime,
+      isDone: fields[3] as bool,
+    );
   }
 
   @override
-  void write(BinaryWriter writer, TaskModel obj) {
+  void write(BinaryWriter writer, TaskTable obj) {
     writer
       ..writeByte(4)
       ..writeByte(0)
@@ -43,7 +44,7 @@ class TaskModelAdapter extends TypeAdapter<TaskModel> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is TaskModelAdapter &&
+      other is TaskTableAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

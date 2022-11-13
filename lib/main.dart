@@ -1,17 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tasker/layers/app/models/task/task_model.dart';
-import 'package:tasker/layers/core/utils/constants.dart';
-import 'package:tasker/layers/core/utils/route_generator.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 
 Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-
-  await Hive.initFlutter();
-
-  Hive.registerAdapter(TaskModelAdapter());
-  await Hive.openBox<TaskModel>('taskmodel');
-
   runApp(const TaskerApp());
 }
 
@@ -20,11 +9,10 @@ class TaskerApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Tasker',
-      onGenerateRoute: RouteGenerator.generateRoute,
-      initialRoute: kHomeRoute,
+      home: Scaffold(body: Container()),
     );
   }
 }
