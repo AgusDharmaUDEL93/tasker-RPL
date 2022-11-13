@@ -15,12 +15,11 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final TaskController _taskController = serviceLocator.get<TaskController>();
   final TextEditingController _titleController = TextEditingController();
-  List<TaskEntity> list = [];
 
   @override
   void initState() {
     super.initState();
-    list = _taskController.getAllTasks();
+    _taskController.getAllTasks();
   }
 
   @override
@@ -48,9 +47,9 @@ class _HomePageState extends State<HomePage> {
             ListView.builder(
               physics: const BouncingScrollPhysics(),
               shrinkWrap: true,
-              itemCount: list.length,
+              itemCount: _taskController.tasksList.length,
               itemBuilder: (BuildContext context, int index) {
-                return TaskCardWidget(task: list[index]);
+                return TaskCardWidget(task: _taskController.tasksList[index]);
               },
             ),
           ],

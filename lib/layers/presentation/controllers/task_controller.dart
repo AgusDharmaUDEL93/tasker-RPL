@@ -7,6 +7,7 @@ class TaskController {
   final GetAllTasksUsecase _getAllTasksUsecase;
   final DeleteTaskUsecase _deleteTaskUsecase;
   final SaveTaskUsecase _saveTaskUsecase;
+  List<TaskEntity> tasksList = [];
 
   TaskController(
     this._getAllTasksUsecase,
@@ -14,8 +15,8 @@ class TaskController {
     this._saveTaskUsecase,
   );
 
-  List<TaskEntity> getAllTasks() {
-    return _getAllTasksUsecase();
+  void getAllTasks() {
+    tasksList = _getAllTasksUsecase();
   }
 
   bool saveTask(TaskEntity task) {
