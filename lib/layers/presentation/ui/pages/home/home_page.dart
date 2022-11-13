@@ -13,14 +13,14 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final TaskController _taskController = serviceLocator.get<TaskController>();
+  final TaskController taskController = serviceLocator.get<TaskController>();
   final TextEditingController _titleController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
     WidgetsFlutterBinding.ensureInitialized();
-    _taskController.getAllTasks();
+    taskController.getAllTasks();
   }
 
   @override
@@ -35,7 +35,7 @@ class _HomePageState extends State<HomePage> {
             ElevatedButton(
               child: Text('teste'),
               onPressed: () {
-                _taskController.saveTask(
+                taskController.saveTask(
                   TaskEntity(
                     title: _titleController.text,
                     description: 'teste',
@@ -46,15 +46,15 @@ class _HomePageState extends State<HomePage> {
               },
             ),
             AnimatedBuilder(
-              animation: _taskController,
+              animation: taskController,
               builder: (context, child) {
                 return ListView.builder(
                   physics: const BouncingScrollPhysics(),
                   shrinkWrap: true,
-                  itemCount: _taskController.tasksList.length,
+                  itemCount: taskController.tasksList.length,
                   itemBuilder: (BuildContext context, int index) {
                     return TaskCardWidget(
-                        task: _taskController.tasksList[index]);
+                        task: taskController.tasksList[index]);
                   },
                 );
               },
