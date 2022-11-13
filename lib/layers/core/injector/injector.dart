@@ -17,6 +17,7 @@ import 'package:tasker/layers/domain/usecases/get_all_tasks/get_all_tasks_usecas
 import 'package:tasker/layers/domain/usecases/get_all_tasks/get_all_tasks_usecase_impl.dart';
 import 'package:tasker/layers/domain/usecases/save_task/save_task_usecase.dart';
 import 'package:tasker/layers/domain/usecases/save_task/save_task_usecase_impl.dart';
+import 'package:tasker/layers/presentation/controllers/task_controller.dart';
 
 final GetIt serviceLocator = GetIt.I;
 
@@ -44,4 +45,11 @@ Future<void> setupLocator() async {
       () => DeleteTaskLocalDatasourceImpl(serviceLocator()));
   serviceLocator.registerLazySingleton<SaveTaskDatasource>(
       () => SaveTaskLocalDatasourceImpl(serviceLocator()));
+
+  // Controllers
+  serviceLocator.registerLazySingleton<TaskController>(() => TaskController(
+        serviceLocator(),
+        serviceLocator(),
+        serviceLocator(),
+      ));
 }
