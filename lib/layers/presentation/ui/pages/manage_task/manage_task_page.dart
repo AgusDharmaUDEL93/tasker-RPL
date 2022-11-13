@@ -5,6 +5,7 @@ import 'package:tasker/layers/core/utils/constants.dart';
 import 'package:tasker/layers/domain/entities/task_entity.dart';
 import 'package:tasker/layers/presentation/controllers/task_controller.dart';
 
+import '../../widgets/manage_task_appbar.dart';
 import '../../widgets/manage_task_datepicker.dart';
 import '../../widgets/manage_task_textfield.dart';
 
@@ -42,7 +43,7 @@ class _ManageTaskPageState extends State<ManageTaskPage> {
   Widget build(BuildContext context) {
     isEditing = widget.task != null;
     return Scaffold(
-      // appBar: ManageTaskAppBar(title: isEditing ? 'Edit Task' : 'Add Task'),
+      appBar: ManageTaskAppBar(title: isEditing ? 'Edit Task' : 'Add Task'),
       body: Padding(
         padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
         child: SingleChildScrollView(
