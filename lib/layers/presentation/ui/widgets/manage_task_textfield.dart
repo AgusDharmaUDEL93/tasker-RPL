@@ -39,6 +39,7 @@ class ManageTaskTextFieldWidgetState extends State<ManageTaskTextFieldWidget> {
             }
             return null;
           },
+          cursorColor: kPrimaryColor,
           controller: widget.controller,
           style: GoogleFonts.poppins(
             fontSize: 18,

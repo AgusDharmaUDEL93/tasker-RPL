@@ -74,10 +74,10 @@ class _ManageTaskPageState extends State<ManageTaskPage> {
                       elevation: 0,
                     ),
                     onPressed: () {
-                      print(dateTime);
+                      final bool response;
                       if (_formKey.currentState!.validate()) {
                         if (isEditing) {
-                          taskController.editTask(
+                          response = taskController.editTask(
                             TaskEntity(
                               title: titleController.text,
                               description: descController.text,
@@ -87,7 +87,7 @@ class _ManageTaskPageState extends State<ManageTaskPage> {
                             previousTitle,
                           );
                         } else {
-                          taskController.saveTask(
+                          response = taskController.saveTask(
                             TaskEntity(
                               title: titleController.text,
                               description: descController.text,
@@ -96,7 +96,11 @@ class _ManageTaskPageState extends State<ManageTaskPage> {
                             ),
                           );
                         }
-                        Navigator.pop(context);
+                        if (!response) {
+                          _showAlertDialog(context);
+                        } else {
+                          Navigator.pop(context);
+                        }
                       }
                     },
                     child: Text(
@@ -113,6 +117,71 @@ class _ManageTaskPageState extends State<ManageTaskPage> {
           ),
         ),
       ),
+    );
+  }
+
+  _showAlertDialog(BuildContext context) {
+    return showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          contentPadding: const EdgeInsets.only(top: 10.0),
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(32.0)),
+          ),
+          title: Text(
+            'Task already exists',
+            style: GoogleFonts.poppins(
+              fontSize: 22,
+              color: kSecondaryColor,
+              fontWeight: FontWeight.w700,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
+                child: Text(
+                  'The title of the given task already exists. Please choose another title.',
+                  style: GoogleFonts.poppins(
+                    fontSize: 18,
+                    color: kSecondaryColor,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              InkWell(
+                onTap: () {
+                  Navigator.pop(context);
+                },
+                child: Container(
+                  padding: const EdgeInsets.only(top: 20.0, bottom: 20.0),
+                  decoration: const BoxDecoration(
+                    color: kPrimaryColor,
+                    borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(32.0),
+                        bottomRight: Radius.circular(32.0)),
+                  ),
+                  child: Text(
+                    'OK',
+                    style: GoogleFonts.poppins(
+                      fontSize: 18,
+                      color: kMainBackground,
+                      fontWeight: FontWeight.w700,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 

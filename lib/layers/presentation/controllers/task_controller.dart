@@ -24,7 +24,7 @@ class TaskController extends ChangeNotifier {
     notifyListeners();
   }
 
-  void editTask(TaskEntity task, String previousTitle) {
+  bool editTask(TaskEntity task, String previousTitle) {
     final isEdited = _saveTaskUsecase(task, previousTitle);
     if (isEdited) {
       final indexChangedTask =
@@ -33,14 +33,16 @@ class TaskController extends ChangeNotifier {
       tasksList.insert(indexChangedTask, task);
       notifyListeners();
     }
+    return isEdited;
   }
 
-  void saveTask(TaskEntity task) {
+  bool saveTask(TaskEntity task) {
     final isSaved = _saveTaskUsecase(task);
     if (isSaved) {
       tasksList.add(task);
       notifyListeners();
     }
+    return isSaved;
   }
 
   void deleteTask(String title) {
