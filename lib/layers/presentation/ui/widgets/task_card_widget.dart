@@ -69,11 +69,16 @@ class _TaskCardWidgetState extends State<TaskCardWidget> {
                       padding: const EdgeInsets.symmetric(horizontal: 15),
                       child: InkWell(
                         radius: 30,
-                        onTap: () {
-                          setState(() {
-                            widget.task.isDone = !widget.task.isDone;
-                          });
-                        },
+                        onTap: () => taskController
+                            .changeTaskCompletionStatus(widget.task),
+                        // print(widget.task.isDone);
+                        // taskController
+                        //     .changeTaskCompletionStatus(widget.task);
+                        // print(widget.task.isDone);
+                        // setState(() {
+                        //   widget.task.isDone = !widget.task.isDone;
+                        // });
+
                         child: widget.task.isDone
                             ? const Icon(
                                 Icons.check_circle_rounded,

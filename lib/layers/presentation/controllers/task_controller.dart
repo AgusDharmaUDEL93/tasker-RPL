@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:tasker/layers/domain/entities/task_entity.dart';
+import 'package:tasker/layers/domain/usecases/change_task_completion_status/change_task_completion_status.dart';
 import 'package:tasker/layers/domain/usecases/delete_task/delete_task_usecase.dart';
 import 'package:tasker/layers/domain/usecases/get_all_tasks/get_all_tasks_usecase.dart';
 import 'package:tasker/layers/domain/usecases/save_task/save_task_usecase.dart';
@@ -8,12 +9,14 @@ class TaskController extends ChangeNotifier {
   final GetAllTasksUsecase _getAllTasksUsecase;
   final DeleteTaskUsecase _deleteTaskUsecase;
   final SaveTaskUsecase _saveTaskUsecase;
+  final ChangeTaskCompletionStatusUsecase _changeTaskCompletionStatusUsecase;
   List<TaskEntity> tasksList = [];
 
   TaskController(
     this._getAllTasksUsecase,
     this._deleteTaskUsecase,
     this._saveTaskUsecase,
+    this._changeTaskCompletionStatusUsecase,
   );
 
   void getAllTasks() {
@@ -35,5 +38,12 @@ class TaskController extends ChangeNotifier {
       tasksList.removeWhere((e) => e.title == title);
       notifyListeners();
     }
+  }
+
+  void changeTaskCompletionStatus(TaskEntity task) {
+    _changeTaskCompletionStatusUsecase(task);
+    final a = tasksList.firstWhere((e) => e.title == task.title);
+    a.isDone = !task.isDone;
+    notifyListeners();
   }
 }

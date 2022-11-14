@@ -62,7 +62,7 @@ class _HomePageState extends State<HomePage> {
                 AnimatedBuilder(
                   animation: taskController,
                   builder: (context, child) {
-                    if (taskController.tasksList.length > 0) {
+                    if (taskController.tasksList.isNotEmpty) {
                       return ListView.builder(
                         physics: const BouncingScrollPhysics(),
                         shrinkWrap: true,
