@@ -1,5 +1,6 @@
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:msh_checkbox/msh_checkbox.dart';
 import 'package:tasker/layers/core/injector/injector.dart';
 import 'package:tasker/layers/domain/entities/task_entity.dart';
 import 'package:flutter/material.dart';
@@ -39,14 +40,14 @@ class _TaskCardWidgetState extends State<TaskCardWidget> {
                 kManageTaskRoute,
                 arguments: widget.task,
               ),
-              foregroundColor: Colors.blue,
+              foregroundColor: kSecondaryColor,
               icon: Icons.edit,
               backgroundColor: kMainBackground,
             ),
             SlidableAction(
               onPressed: (context) =>
                   taskController.deleteTask(widget.task.title),
-              foregroundColor: Colors.red,
+              foregroundColor: kPrimaryColor,
               icon: Icons.delete,
               backgroundColor: kMainBackground,
             ),
@@ -68,40 +69,37 @@ class _TaskCardWidgetState extends State<TaskCardWidget> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 15),
-                      child: InkWell(
-                        radius: 30,
-                        onTap: () => taskController
-                            .changeTaskCompletionStatus(widget.task),
-                        child: widget.task.isDone
-                            ? const Icon(
-                                Icons.check_circle_rounded,
-                                color: kPrimaryColor,
-                                size: 30,
-                              )
-                            : const Icon(
-                                Icons.check_rounded,
-                                color: kLightGrey,
-                                size: 30,
-                              ),
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: MSHCheckbox(
+                        size: 30,
+                        value: widget.task.isDone,
+                        colorConfig:
+                            MSHColorConfig.fromCheckedUncheckedDisabled(
+                          checkedColor: kPrimaryColor,
+                        ),
+                        style: MSHCheckboxStyle.fillScaleCheck,
+                        onChanged: (selected) {
+                          taskController
+                              .changeTaskCompletionStatus(widget.task);
+                        },
                       ),
                     ),
                   ],
                 ),
                 collapsedBackgroundColor: kCardBackground,
                 backgroundColor: kCardCollapsedBackground,
-                collapsedTextColor: Colors.black,
-                textColor: Colors.black,
+                collapsedTextColor: kSecondaryColor,
+                textColor: kSecondaryColor,
                 title: Text(
                   widget.task.title,
                   style: GoogleFonts.poppins(
-                    color: kPrimaryColor,
+                    color: kSecondaryColor,
                     fontWeight: FontWeight.w500,
-                    fontSize: 14,
+                    fontSize: 16,
                     decoration: widget.task.isDone
                         ? TextDecoration.lineThrough
                         : TextDecoration.none,
-                    decorationColor: Colors.black,
+                    decorationColor: kSecondaryColor,
                     decorationThickness: 2,
                   ),
                 ),
@@ -114,7 +112,7 @@ class _TaskCardWidgetState extends State<TaskCardWidget> {
                         width: 18,
                         height: 18,
                         color: widget.task.isDone
-                            ? Colors.black.withOpacity(0.3)
+                            ? kSecondaryColor.withOpacity(0.3)
                             : difference > 4
                                 ? Colors.green.withOpacity(0.3)
                                 : difference > 2
@@ -127,7 +125,7 @@ class _TaskCardWidgetState extends State<TaskCardWidget> {
                               width: 10,
                               height: 10,
                               color: widget.task.isDone
-                                  ? Colors.black
+                                  ? kSecondaryColor
                                   : difference > 4
                                       ? Colors.green
                                       : difference > 2
@@ -164,12 +162,14 @@ class _TaskCardWidgetState extends State<TaskCardWidget> {
                     children: [
                       Center(
                         child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 20),
+                          padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
                           child: Text(
                             widget.task.description,
                             style: GoogleFonts.poppins(
-                              color: kPrimaryColor,
+                              color: kSecondaryColor,
+                              fontSize: 14,
                             ),
+                            textAlign: TextAlign.center,
                           ),
                         ),
                       ),
