@@ -8,13 +8,18 @@ class SaveTaskLocalDatasourceImpl implements SaveTaskDatasource {
   SaveTaskLocalDatasourceImpl(this._box);
 
   @override
-  bool call(TaskEntity task) {
+  bool call(TaskEntity task, String? previousTitle) {
     final newTask = TaskTable(
       title: task.title,
       description: task.description,
       expirationDate: task.expirationDate,
       isDone: task.isDone,
     );
+    if (previousTitle != null) {
+      _box.delete(previousTitle);
+      _box.put(task.title, newTask);
+      return true;
+    }
     if (_box.containsKey(task.title)) {
       return false;
     }

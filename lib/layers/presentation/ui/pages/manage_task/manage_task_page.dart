@@ -26,13 +26,14 @@ class _ManageTaskPageState extends State<ManageTaskPage> {
   final TaskController taskController = serviceLocator.get<TaskController>();
 
   bool isEditing = false;
+  late final String previousTitle;
 
   @override
   void initState() {
     super.initState();
     if (widget.task != null) {
       final task = widget.task!;
-
+      previousTitle = task.title;
       titleController.text = task.title;
       descController.text = task.description;
       refresh(task.expirationDate);
@@ -76,6 +77,15 @@ class _ManageTaskPageState extends State<ManageTaskPage> {
                       print(dateTime);
                       if (_formKey.currentState!.validate()) {
                         if (isEditing) {
+                          taskController.editTask(
+                            TaskEntity(
+                              title: titleController.text,
+                              description: descController.text,
+                              expirationDate: dateTime,
+                              isDone: widget.task!.isDone,
+                            ),
+                            previousTitle,
+                          );
                         } else {
                           taskController.saveTask(
                             TaskEntity(

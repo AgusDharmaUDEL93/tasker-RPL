@@ -24,6 +24,17 @@ class TaskController extends ChangeNotifier {
     notifyListeners();
   }
 
+  void editTask(TaskEntity task, String previousTitle) {
+    final isEdited = _saveTaskUsecase(task, previousTitle);
+    if (isEdited) {
+      final indexChangedTask =
+          tasksList.indexWhere((e) => e.title == previousTitle);
+      tasksList.removeAt(indexChangedTask);
+      tasksList.insert(indexChangedTask, task);
+      notifyListeners();
+    }
+  }
+
   void saveTask(TaskEntity task) {
     final isSaved = _saveTaskUsecase(task);
     if (isSaved) {

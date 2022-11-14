@@ -30,22 +30,24 @@ class _TaskCardWidgetState extends State<TaskCardWidget> {
       margin: const EdgeInsets.only(bottom: 14),
       child: Slidable(
         endActionPane: ActionPane(
+          extentRatio: 0.4,
           motion: const ScrollMotion(),
           children: [
             SlidableAction(
-              onPressed: (context) {},
+              onPressed: (context) => Navigator.pushNamed(
+                context,
+                kManageTaskRoute,
+                arguments: widget.task,
+              ),
               foregroundColor: Colors.blue,
               icon: Icons.edit,
-              label: 'Edit',
               backgroundColor: kMainBackground,
             ),
             SlidableAction(
-              onPressed: (context) {
-                taskController.deleteTask(widget.task.title);
-              },
+              onPressed: (context) =>
+                  taskController.deleteTask(widget.task.title),
               foregroundColor: Colors.red,
               icon: Icons.delete,
-              label: 'Delete',
               backgroundColor: kMainBackground,
             ),
           ],
@@ -71,14 +73,6 @@ class _TaskCardWidgetState extends State<TaskCardWidget> {
                         radius: 30,
                         onTap: () => taskController
                             .changeTaskCompletionStatus(widget.task),
-                        // print(widget.task.isDone);
-                        // taskController
-                        //     .changeTaskCompletionStatus(widget.task);
-                        // print(widget.task.isDone);
-                        // setState(() {
-                        //   widget.task.isDone = !widget.task.isDone;
-                        // });
-
                         child: widget.task.isDone
                             ? const Icon(
                                 Icons.check_circle_rounded,

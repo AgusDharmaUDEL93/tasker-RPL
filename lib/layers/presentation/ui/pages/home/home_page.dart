@@ -33,7 +33,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.pushNamed(context, kManageTaskRoute);
+          Navigator.pushNamed(context, kManageTaskRoute).then((value) => setState(() {}));
         },
         elevation: 0,
         backgroundColor: kPrimaryColor,

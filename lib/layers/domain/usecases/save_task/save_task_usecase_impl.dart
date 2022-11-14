@@ -7,7 +7,7 @@ class SaveTaskUsecaseImpl implements SaveTaskUsecase {
   SaveTaskUsecaseImpl(this._saveTaskRepository);
 
   @override
-  bool call(TaskEntity task) {
-    return _saveTaskRepository(task);
+  bool call(TaskEntity task, [String? previousTitle]) {
+    return _saveTaskRepository(task, previousTitle);
   }
 }
