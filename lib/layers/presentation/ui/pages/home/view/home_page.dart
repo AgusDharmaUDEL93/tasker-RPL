@@ -5,10 +5,10 @@ import 'package:tasker/layers/presentation/controllers/task_controller.dart';
 import 'package:tasker/layers/presentation/ui/widgets/task_card_widget.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../core/injector/injector.dart';
-import '../../../../core/utils/constants.dart';
-import '../../widgets/home_add_first_task_widget.dart';
-import '../../widgets/home_appbar_widget.dart';
+import '../../../../../core/injector/injector.dart';
+import '../../../../../core/utils/constants.dart';
+import '../../../widgets/add_first_task_widget.dart';
+import '../components/home_appbar.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -19,7 +19,6 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final TaskController taskController = serviceLocator.get<TaskController>();
-  final TextEditingController _titleController = TextEditingController();
 
   @override
   void initState() {
@@ -32,8 +31,12 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16),
+        ),
         onPressed: () {
-          Navigator.pushNamed(context, kManageTaskRoute).then((value) => setState(() {}));
+          Navigator.pushNamed(context, kManageTaskRoute)
+              .then((value) => setState(() {}));
         },
         elevation: 0,
         backgroundColor: kPrimaryColor,
@@ -63,13 +66,16 @@ class _HomePageState extends State<HomePage> {
                   animation: taskController,
                   builder: (context, child) {
                     if (taskController.tasksList.isNotEmpty) {
+                      taskController.tasksList.sort((a, b) =>
+                          a.expirationDate.compareTo(b.expirationDate));
                       return ListView.builder(
                         physics: const BouncingScrollPhysics(),
                         shrinkWrap: true,
                         itemCount: taskController.tasksList.length,
                         itemBuilder: (BuildContext context, int index) {
                           return TaskCardWidget(
-                              task: taskController.tasksList[index]);
+                            task: taskController.tasksList[index],
+                          );
                         },
                       );
                     }

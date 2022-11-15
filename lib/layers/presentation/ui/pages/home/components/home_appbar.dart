@@ -3,7 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
-import '../../../core/utils/constants.dart';
+import '../../../../../core/utils/constants.dart';
 
 class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   const HomeAppBar({super.key})
@@ -52,7 +52,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
             ),
             child: InkWell(
               onTap: () {
-                Navigator.pushNamed(context, '/search-task');
+                Navigator.pushNamed(context, kSearchTaskRoute);
               },
               child: Padding(
                 padding:

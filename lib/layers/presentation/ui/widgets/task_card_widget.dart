@@ -77,7 +77,7 @@ class _TaskCardWidgetState extends State<TaskCardWidget> {
                             MSHColorConfig.fromCheckedUncheckedDisabled(
                           checkedColor: kPrimaryColor,
                         ),
-                        style: MSHCheckboxStyle.fillScaleCheck,
+                        style: MSHCheckboxStyle.fillScaleColor,
                         onChanged: (selected) {
                           taskController
                               .changeTaskCompletionStatus(widget.task);
@@ -117,7 +117,9 @@ class _TaskCardWidgetState extends State<TaskCardWidget> {
                                 ? Colors.green.withOpacity(0.3)
                                 : difference > 2
                                     ? Colors.yellow.withOpacity(0.3)
-                                    : Colors.red.withOpacity(0.3),
+                                    : difference >= 0
+                                        ? Colors.red.withOpacity(0.3)
+                                        : kSecondaryColor.withOpacity(0.3),
                         child: Center(
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(50),
@@ -130,7 +132,9 @@ class _TaskCardWidgetState extends State<TaskCardWidget> {
                                       ? Colors.green
                                       : difference > 2
                                           ? Colors.yellow
-                                          : Colors.red,
+                                          : difference >= 0
+                                              ? Colors.red
+                                              : kSecondaryColor,
                             ),
                           ),
                         ),
@@ -140,7 +144,11 @@ class _TaskCardWidgetState extends State<TaskCardWidget> {
                       width: 6,
                     ),
                     Text(
-                      widget.task.isDone ? 'Done' : '${difference} days left',
+                      (widget.task.isDone && difference >= 0)
+                          ? 'Done'
+                          : (!widget.task.isDone && difference >= 0)
+                              ? '${difference} days left'
+                              : 'Expired',
                       style: GoogleFonts.poppins(color: kDarkGrey),
                     ),
                   ],
@@ -162,7 +170,7 @@ class _TaskCardWidgetState extends State<TaskCardWidget> {
                     children: [
                       Center(
                         child: Padding(
-                          padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
+                          padding: const EdgeInsets.fromLTRB(20, 0, 20, 12),
                           child: Text(
                             widget.task.description,
                             style: GoogleFonts.poppins(

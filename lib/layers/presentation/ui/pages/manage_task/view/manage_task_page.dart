@@ -5,9 +5,9 @@ import 'package:tasker/layers/core/utils/constants.dart';
 import 'package:tasker/layers/domain/entities/task_entity.dart';
 import 'package:tasker/layers/presentation/controllers/task_controller.dart';
 
-import '../../widgets/manage_task_appbar.dart';
-import '../../widgets/manage_task_datepicker.dart';
-import '../../widgets/manage_task_textfield.dart';
+import '../../../widgets/custom_appbar_widget.dart';
+import '../components/manage_task_datepicker.dart';
+import '../components/manage_task_textfield.dart';
 
 class ManageTaskPage extends StatefulWidget {
   const ManageTaskPage({super.key, this.task});
@@ -44,7 +44,7 @@ class _ManageTaskPageState extends State<ManageTaskPage> {
   Widget build(BuildContext context) {
     isEditing = widget.task != null;
     return Scaffold(
-      appBar: ManageTaskAppBar(title: isEditing ? 'Edit Task' : 'Add Task'),
+      appBar: CustomAppBarWidget(title: isEditing ? 'Edit Task' : 'Add Task'),
       body: Padding(
         padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
         child: SingleChildScrollView(
@@ -55,12 +55,12 @@ class _ManageTaskPageState extends State<ManageTaskPage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  ManageTaskDateWidget(dateTime: dateTime, refresh: refresh),
+                  ManageTaskDatepicker(dateTime: dateTime, refresh: refresh),
                   const SizedBox(height: 50),
-                  ManageTaskTextFieldWidget(
+                  ManageTaskTextfield(
                       labelText: 'Task Title', controller: titleController),
                   const SizedBox(height: 50),
-                  ManageTaskTextFieldWidget(
+                  ManageTaskTextfield(
                       labelText: 'Description', controller: descController),
                   const SizedBox(height: 90),
                   ElevatedButton(

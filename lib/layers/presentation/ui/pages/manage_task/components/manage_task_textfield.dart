@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../../core/utils/constants.dart';
+import '../../../../../core/utils/constants.dart';
 
-class ManageTaskTextFieldWidget extends StatefulWidget {
-  const ManageTaskTextFieldWidget({
+class ManageTaskTextfield extends StatefulWidget {
+  const ManageTaskTextfield({
     super.key,
     required this.labelText,
     required this.controller,
@@ -14,11 +14,10 @@ class ManageTaskTextFieldWidget extends StatefulWidget {
   final TextEditingController controller;
 
   @override
-  State<ManageTaskTextFieldWidget> createState() =>
-      ManageTaskTextFieldWidgetState();
+  State<ManageTaskTextfield> createState() => ManageTaskTextfieldState();
 }
 
-class ManageTaskTextFieldWidgetState extends State<ManageTaskTextFieldWidget> {
+class ManageTaskTextfieldState extends State<ManageTaskTextfield> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -43,7 +42,7 @@ class ManageTaskTextFieldWidgetState extends State<ManageTaskTextFieldWidget> {
           controller: widget.controller,
           style: GoogleFonts.poppins(
             fontSize: 18,
-            color: kPrimaryColor,
+            color: kSecondaryColor,
             fontWeight: FontWeight.w500,
           ),
           decoration: InputDecoration(

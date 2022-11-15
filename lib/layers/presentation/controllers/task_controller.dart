@@ -59,4 +59,12 @@ class TaskController extends ChangeNotifier {
     a.isDone = !task.isDone;
     notifyListeners();
   }
+
+  List<TaskEntity> filterTasksByTitle(String title) {
+    return tasksList
+        .where((e) => e.title.toLowerCase().contains(title) ? true : false)
+        .toList();
+  }
+
+  
 }

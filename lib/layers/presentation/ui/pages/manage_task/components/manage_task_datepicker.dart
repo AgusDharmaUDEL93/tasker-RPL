@@ -4,8 +4,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:tasker/layers/core/utils/constants.dart';
 
-class ManageTaskDateWidget extends StatefulWidget {
-  ManageTaskDateWidget({
+class ManageTaskDatepicker extends StatefulWidget {
+  ManageTaskDatepicker({
     super.key,
     required this.dateTime,
     required this.refresh,
@@ -15,10 +15,10 @@ class ManageTaskDateWidget extends StatefulWidget {
   Function refresh;
 
   @override
-  State<ManageTaskDateWidget> createState() => _ManageTaskDateWidgetState();
+  State<ManageTaskDatepicker> createState() => _ManageTaskDatepickerState();
 }
 
-class _ManageTaskDateWidgetState extends State<ManageTaskDateWidget> {
+class _ManageTaskDatepickerState extends State<ManageTaskDatepicker> {
   @override
   Widget build(BuildContext context) {
     return Row(
