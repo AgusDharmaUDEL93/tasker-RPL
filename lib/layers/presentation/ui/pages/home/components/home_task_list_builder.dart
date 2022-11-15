@@ -5,8 +5,8 @@ import 'package:tasker/layers/presentation/controllers/task_controller.dart';
 import '../../../widgets/add_first_task_widget.dart';
 import '../../../widgets/task_card_widget.dart';
 
-class TaskListBuilder extends StatefulWidget {
-  const TaskListBuilder({
+class HomeTaskListBuilder extends StatefulWidget {
+  const HomeTaskListBuilder({
     super.key,
     required this.currentIndex,
   });
@@ -14,10 +14,10 @@ class TaskListBuilder extends StatefulWidget {
   final int currentIndex;
 
   @override
-  State<TaskListBuilder> createState() => _TaskListBuilderState();
+  State<HomeTaskListBuilder> createState() => _HomeTaskListBuilderState();
 }
 
-class _TaskListBuilderState extends State<TaskListBuilder> {
+class _HomeTaskListBuilderState extends State<HomeTaskListBuilder> {
   final TaskController taskController = serviceLocator.get<TaskController>();
 
   @override

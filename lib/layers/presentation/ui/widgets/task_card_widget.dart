@@ -32,15 +32,15 @@ class _TaskCardWidgetState extends State<TaskCardWidget>
   @override
   void initState() {
     super.initState();
-    controller = new AnimationController(
-      duration: new Duration(milliseconds: 250),
+    controller = AnimationController(
+      duration: const Duration(milliseconds: 250),
       vsync: this,
     );
 
     final CurvedAnimation curve =
-        new CurvedAnimation(parent: controller, curve: Curves.easeOut);
+        CurvedAnimation(parent: controller, curve: Curves.easeOut);
 
-    animation = new Tween(begin: 0.0, end: 1.0).animate(curve)
+    animation = Tween(begin: 0.0, end: 1.0).animate(curve)
       ..addListener(() => setState(() {}));
     controller.forward(from: 0.0);
   }
