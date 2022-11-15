@@ -60,17 +60,25 @@ class _CustomSearchBarState extends State<CustomSearchBar> {
             ),
           ),
         ),
+        const SizedBox(width: 8),
         Expanded(
           flex: 0,
           child: InkWell(
             onTap: () {},
             child: Container(
+              height: 65,
+              width: 65,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: Colors.blue,
+                borderRadius: BorderRadius.circular(16),
+                color: kPrimaryColor,
               ),
-              child: Center(
-                child: Icon(Icons.add),
+              child: Padding(
+                padding: const EdgeInsets.all(14),
+                child: SvgPicture.asset(
+                  'assets/icons/calendar-icon.svg',
+                  height: 25,
+                  color: kMainBackground,
+                ),
               ),
             ),
           ),

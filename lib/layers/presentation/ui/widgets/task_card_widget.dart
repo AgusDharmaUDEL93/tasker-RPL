@@ -58,9 +58,9 @@ class _TaskCardWidgetState extends State<TaskCardWidget> {
             dividerColor: Colors.transparent,
           ),
           child: ClipRRect(
-            borderRadius: BorderRadius.circular(15),
+            borderRadius: BorderRadius.circular(16),
             child: ListTileTheme(
-              contentPadding: const EdgeInsets.symmetric(vertical: 6),
+              contentPadding: const EdgeInsets.symmetric(vertical: 10),
               dense: true,
               horizontalTitleGap: 0.0,
               minLeadingWidth: 0,
@@ -90,17 +90,20 @@ class _TaskCardWidgetState extends State<TaskCardWidget> {
                 backgroundColor: kCardCollapsedBackground,
                 collapsedTextColor: kSecondaryColor,
                 textColor: kSecondaryColor,
-                title: Text(
-                  widget.task.title,
-                  style: GoogleFonts.poppins(
-                    color: kSecondaryColor,
-                    fontWeight: FontWeight.w500,
-                    fontSize: 16,
-                    decoration: widget.task.isDone
-                        ? TextDecoration.lineThrough
-                        : TextDecoration.none,
-                    decorationColor: kSecondaryColor,
-                    decorationThickness: 2,
+                title: Padding(
+                  padding: const EdgeInsets.only(bottom: 4.0),
+                  child: Text(
+                    widget.task.title,
+                    style: GoogleFonts.poppins(
+                      color: kSecondaryColor,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 16,
+                      decoration: widget.task.isDone
+                          ? TextDecoration.lineThrough
+                          : TextDecoration.none,
+                      decorationColor: kSecondaryColor,
+                      decorationThickness: 2,
+                    ),
                   ),
                 ),
                 childrenPadding: const EdgeInsets.symmetric(vertical: 10),
@@ -149,7 +152,10 @@ class _TaskCardWidgetState extends State<TaskCardWidget> {
                           : (!widget.task.isDone && difference >= 0)
                               ? '${difference} days left'
                               : 'Expired',
-                      style: GoogleFonts.poppins(color: kDarkGrey),
+                      style: GoogleFonts.poppins(
+                        color: kDarkGrey,
+                        fontSize: 14,
+                      ),
                     ),
                   ],
                 ),
