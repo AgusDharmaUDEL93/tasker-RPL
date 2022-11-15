@@ -30,7 +30,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
               child: Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: SvgPicture.asset(
-                  'assets/icons/menu-icon.svg',
+                  'assets/icons/darkmode-icon.svg',
                   height: 20,
                   color: kPrimaryColor,
                 ),
@@ -41,7 +41,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
             '${DateFormat('EEEE').format(DateTime.now())}, ${DateFormat('d').format(DateTime.now())}',
             style: GoogleFonts.poppins(
               color: kPrimaryColor,
-              fontWeight: FontWeight.w500,
+              fontWeight: FontWeight.w600,
               fontSize: 18,
             ),
           ),
@@ -55,11 +55,10 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
                 Navigator.pushNamed(context, kSearchTaskRoute);
               },
               child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 12),
+                padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 5),
                 child: SvgPicture.asset(
-                  'assets/icons/filter-icon.svg',
-                  height: 16,
+                  'assets/icons/search-icon.svg',
+                  height: 30,
                   color: kPrimaryColor,
                 ),
               ),
