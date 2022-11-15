@@ -6,6 +6,7 @@ import 'package:tasker/layers/core/utils/constants.dart';
 import 'package:tasker/layers/presentation/controllers/task_controller.dart';
 import 'package:tasker/layers/presentation/ui/pages/search_task/components/custom_searchbar.dart';
 
+import '../../../../../domain/entities/task_entity.dart';
 import '../../../widgets/add_first_task_widget.dart';
 import '../../../widgets/custom_appbar_widget.dart';
 import '../../../widgets/task_card_widget.dart';
@@ -19,6 +20,8 @@ class SearchTaskPage extends StatefulWidget {
 
 class _SearchTaskPageState extends State<SearchTaskPage> {
   final TaskController taskController = serviceLocator.get<TaskController>();
+  DateTime? startDate;
+  DateTime? endDate;
   String arguments = '';
 
   @override
@@ -38,7 +41,23 @@ class _SearchTaskPageState extends State<SearchTaskPage> {
               AnimatedBuilder(
                 animation: taskController,
                 builder: (BuildContext context, Widget? child) {
-                  var tasks = taskController.filterTasksByTitle(arguments);
+                  var tasks;
+                  print('alolo');
+                  if (startDate != null && endDate != null && arguments == '') {
+                    tasks =
+                        taskController.filterTasksByDate(startDate!, endDate!);
+                  } else if (startDate == null &&
+                      endDate == null &&
+                      arguments != '') {
+                    tasks = taskController.filterTasksByTitle(arguments);
+                  } else if (startDate != null &&
+                      endDate != null &&
+                      arguments != '') {
+                    tasks = taskController.filterTasksByTitleAndDate(
+                        arguments, startDate!, endDate!);
+                  } else {
+                    tasks = taskController.tasksList;
+                  }
 
                   if (tasks.isNotEmpty) {
                     return ListView.builder(
@@ -66,9 +85,14 @@ class _SearchTaskPageState extends State<SearchTaskPage> {
     );
   }
 
-  refresh(String string) {
+  refresh(String string, {DateTime? firstDate, DateTime? secondDate}) {
     setState(() {
       arguments = string;
+
+      if (firstDate != null && secondDate != null) {
+        startDate = firstDate;
+        endDate = secondDate;
+      }
     });
   }
 }

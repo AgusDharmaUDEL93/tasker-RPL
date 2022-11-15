@@ -64,7 +64,22 @@ class _CustomSearchBarState extends State<CustomSearchBar> {
         Expanded(
           flex: 0,
           child: InkWell(
-            onTap: () {},
+            onTap: () {
+              showDateRangePicker(
+                context: context,
+                firstDate: DateTime(2000),
+                lastDate: DateTime(2100),
+              ).then(
+                (value) => setState(
+                  () {
+                    if (value != null) {
+                      widget.refresh('',
+                          firstDate: value.start, secondDate: value.end);
+                    }
+                  },
+                ),
+              );
+            },
             child: Container(
               height: 65,
               width: 65,

@@ -66,5 +66,19 @@ class TaskController extends ChangeNotifier {
         .toList();
   }
 
-  
+  List<TaskEntity> filterTasksByDate(DateTime start, DateTime end) {
+    return tasksList
+        .where((e) =>
+            e.expirationDate.isAfter(start) && e.expirationDate.isBefore(end))
+        .toList();
+  }
+
+  List<TaskEntity> filterTasksByTitleAndDate(
+      String string, DateTime start, DateTime end) {
+    return tasksList
+        .where((e) => e.title.toLowerCase().contains(string))
+        .where((e) =>
+            e.expirationDate.isAfter(start) && e.expirationDate.isBefore(end))
+        .toList();
+  }
 }
