@@ -82,7 +82,7 @@ class _HomePageState extends State<HomePage> {
                     return const AddFirstTaskWidget();
                   },
                 ),
-                const SizedBox(height: 15),
+                // const SizedBox(height: 15),
               ],
             ),
           ),

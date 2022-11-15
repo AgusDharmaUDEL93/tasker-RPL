@@ -42,7 +42,6 @@ class _SearchTaskPageState extends State<SearchTaskPage> {
                 animation: taskController,
                 builder: (BuildContext context, Widget? child) {
                   var tasks;
-                  print('alolo');
                   if (startDate != null && endDate != null && arguments == '') {
                     tasks =
                         taskController.filterTasksByDate(startDate!, endDate!);

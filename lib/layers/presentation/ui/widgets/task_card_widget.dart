@@ -147,7 +147,7 @@ class _TaskCardWidgetState extends State<TaskCardWidget> {
                       width: 6,
                     ),
                     Text(
-                      (widget.task.isDone && difference >= 0)
+                      widget.task.isDone
                           ? 'Done'
                           : (!widget.task.isDone && difference >= 0)
                               ? '${difference} days left'
