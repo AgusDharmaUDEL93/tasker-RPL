@@ -72,12 +72,17 @@ class _TaskCardWidgetState extends State<TaskCardWidget>
               backgroundColor: kMainBackground,
             ),
             SlidableAction(
-              onPressed: (context) =>
-                  taskController.deleteTask(widget.task.title),
+              onPressed: (context) async {
+                final isUserConfirms = await _showAlertDialog(context);
+
+                if (isUserConfirms != null && isUserConfirms) {
+                  taskController.deleteTask(widget.task.title);
+                }
+              },
               foregroundColor: kPrimaryColor,
               icon: Icons.delete,
               backgroundColor: kMainBackground,
-            ),
+            )
           ],
         ),
         child: Theme(
@@ -192,17 +197,15 @@ class _TaskCardWidgetState extends State<TaskCardWidget>
                       width: 6,
                     ),
                     Text(
-                      widget.task.isDone
-                          ? 'Done'
-                          : difference == 0
-                              ? 'Today'
-                              : (!widget.task.isDone &&
-                                      difference >= 0 &&
-                                      isCollapsed)
-                                  ? '${DateFormat("MMMM").format(widget.task.expirationDate)}, ${widget.task.expirationDate.day}'
+                      isCollapsed
+                          ? '${DateFormat("MMMM").format(widget.task.expirationDate)}, ${widget.task.expirationDate.day}'
+                          : widget.task.isDone
+                              ? 'Done'
+                              : difference == 0
+                                  ? 'Today'
                                   : (!widget.task.isDone && difference >= 0)
-                                      ? '${difference} days left'
-                                      : 'Expired',
+                                      ? '$difference days left'
+                                      : '${difference.toString().replaceAll('-', '')} days late',
                       style: GoogleFonts.poppins(
                         color: kDarkGrey,
                         fontSize: 14,
@@ -251,6 +254,101 @@ class _TaskCardWidgetState extends State<TaskCardWidget>
           ),
         ),
       ),
+    );
+  }
+
+  _showAlertDialog(BuildContext context) {
+    return showDialog(
+      context: context,
+      barrierDismissible: true,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          contentPadding: const EdgeInsets.only(top: 10.0),
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(32.0)),
+          ),
+          title: Text(
+            'Delete Task',
+            style: GoogleFonts.poppins(
+              fontSize: 22,
+              color: kSecondaryColor,
+              fontWeight: FontWeight.w700,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
+                child: Text(
+                  'Are you sure you want to delete this task? This action can\'t be undone.',
+                  style: GoogleFonts.poppins(
+                    fontSize: 18,
+                    color: kSecondaryColor,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              Row(
+                children: [
+                  Expanded(
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.pop(context, false);
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.only(top: 20.0, bottom: 20.0),
+                        decoration: const BoxDecoration(
+                          color: kSecondaryColor,
+                          borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(32.0),
+                          ),
+                        ),
+                        child: Text(
+                          'NO',
+                          style: GoogleFonts.poppins(
+                            fontSize: 18,
+                            color: kMainBackground,
+                            fontWeight: FontWeight.w700,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.pop(context, true);
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.only(top: 20.0, bottom: 20.0),
+                        decoration: const BoxDecoration(
+                          color: kPrimaryColor,
+                          borderRadius: BorderRadius.only(
+                              bottomRight: Radius.circular(32.0)),
+                        ),
+                        child: Text(
+                          'YES',
+                          style: GoogleFonts.poppins(
+                            fontSize: 18,
+                            color: kMainBackground,
+                            fontWeight: FontWeight.w700,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 

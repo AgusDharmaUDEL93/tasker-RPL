@@ -54,6 +54,7 @@ class ManageTaskTextfieldState extends State<ManageTaskTextfield> {
                 color: kPrimaryColor,
               ),
             ),
+            errorStyle: GoogleFonts.poppins(),
             errorBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(16),
               borderSide: const BorderSide(

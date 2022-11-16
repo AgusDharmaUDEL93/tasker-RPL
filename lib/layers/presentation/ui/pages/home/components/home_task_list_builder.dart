@@ -8,10 +8,10 @@ import '../../../widgets/task_card_widget.dart';
 class HomeTaskListBuilder extends StatefulWidget {
   const HomeTaskListBuilder({
     super.key,
-    required this.currentIndex,
+    required this.homeSelectedFilter,
   });
 
-  final int currentIndex;
+  final int homeSelectedFilter;
 
   @override
   State<HomeTaskListBuilder> createState() => _HomeTaskListBuilderState();
@@ -26,7 +26,7 @@ class _HomeTaskListBuilderState extends State<HomeTaskListBuilder> {
       animation: taskController,
       builder: (context, child) {
         var tasks;
-        switch (widget.currentIndex) {
+        switch (widget.homeSelectedFilter) {
           case 0:
             taskController.tasksList
                 .sort((a, b) => a.expirationDate.compareTo(b.expirationDate));
@@ -51,7 +51,7 @@ class _HomeTaskListBuilderState extends State<HomeTaskListBuilder> {
             },
           );
         }
-        if (widget.currentIndex == 0) {
+        if (widget.homeSelectedFilter == 0) {
           return const AddFirstTaskWidget();
         }
         return Container();

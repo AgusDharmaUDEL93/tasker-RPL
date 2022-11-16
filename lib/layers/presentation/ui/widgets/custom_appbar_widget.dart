@@ -5,10 +5,14 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../../core/utils/constants.dart';
 
 class CustomAppBarWidget extends StatefulWidget implements PreferredSizeWidget {
-  const CustomAppBarWidget({super.key, required this.title})
-      : preferredSize = const Size.fromHeight(kToolbarHeight);
+  const CustomAppBarWidget({
+    super.key,
+    required this.title,
+    required this.trailing,
+  }) : preferredSize = const Size.fromHeight(kToolbarHeight);
 
   final String title;
+  final Widget? trailing;
 
   @override
   final Size preferredSize;
@@ -44,6 +48,9 @@ class _CustomAppBarWidgetState extends State<CustomAppBarWidget> {
           ),
         ),
       ),
+      actions: [
+        widget.trailing != null ? widget.trailing! : Container(),
+      ],
       centerTitle: true,
       title: Text(
         widget.title,

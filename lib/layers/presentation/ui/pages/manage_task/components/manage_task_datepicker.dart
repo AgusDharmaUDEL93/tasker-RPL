@@ -1,3 +1,4 @@
+import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -19,6 +20,33 @@ class ManageTaskDatepicker extends StatefulWidget {
 }
 
 class _ManageTaskDatepickerState extends State<ManageTaskDatepicker> {
+  final config = CalendarDatePicker2WithActionButtonsConfig(
+    calendarType: CalendarDatePicker2Type.single,
+    dayTextStyle: GoogleFonts.poppins(
+      fontSize: 14,
+    ),
+    weekdayLabelTextStyle: GoogleFonts.poppins(
+      fontSize: 14,
+      fontWeight: FontWeight.w600,
+      color: kSecondaryColor,
+    ),
+    selectedDayTextStyle: GoogleFonts.poppins(
+      fontSize: 14,
+      color: kMainBackground,
+      fontWeight: FontWeight.w600,
+    ),
+    selectedDayHighlightColor: kPrimaryColor,
+    closeDialogOnCancelTapped: true,
+    cancelButtonTextStyle: GoogleFonts.poppins(
+      fontWeight: FontWeight.w600,
+    ),
+    okButtonTextStyle: GoogleFonts.poppins(
+      fontWeight: FontWeight.w600,
+    ),
+  );
+
+  List<DateTime?> initialValues = [DateTime.now()];
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -32,7 +60,7 @@ class _ManageTaskDatepickerState extends State<ManageTaskDatepicker> {
               style: GoogleFonts.poppins(
                 fontWeight: FontWeight.w600,
                 color: kPrimaryColor,
-                fontSize: 25,
+                fontSize: 28,
               ),
             ),
             Text(
@@ -40,43 +68,42 @@ class _ManageTaskDatepickerState extends State<ManageTaskDatepicker> {
               style: GoogleFonts.poppins(
                 fontWeight: FontWeight.w400,
                 color: kDarkGrey,
-                fontSize: 16,
+                fontSize: 20,
               ),
             ),
           ],
         ),
         Container(
+          height: 65,
+          width: 65,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(50.0),
-            border: Border.all(color: kLightBlue),
+            borderRadius: BorderRadius.circular(16),
             color: kPrimaryColor,
           ),
           child: InkWell(
             onTap: () {
-              showDatePicker(
+              showCalendarDatePicker2Dialog(
                 context: context,
-                initialDate: widget.dateTime != DateTime.now()
-                    ? widget.dateTime
-                    : DateTime.now(),
-                firstDate: DateTime(2000),
-                lastDate: DateTime(2100),
+                config: config,
+                initialValue: initialValues,
+                dialogSize: const Size(325, 400),
+                borderRadius: BorderRadius.circular(15),
+                dialogBackgroundColor: Colors.white,
               ).then(
                 (value) => setState(
                   () {
                     if (value != null) {
-                      widget.dateTime = value;
-                      widget.refresh(value);
+                      widget.dateTime = value[0]!;
+                      widget.refresh(value[0]!);
                     }
                   },
                 ),
               );
             },
             child: Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 12.0, vertical: 10),
+              padding: const EdgeInsets.all(14),
               child: SvgPicture.asset(
                 'assets/icons/calendar-icon.svg',
-                height: 25,
                 color: kMainBackground,
               ),
             ),

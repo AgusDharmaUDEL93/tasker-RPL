@@ -3,7 +3,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../../core/utils/constants.dart';
-import '../view/home_page.dart';
 import 'home_filter_bottom_sheet.dart';
 
 class HomeFilterDropdown extends StatefulWidget {
@@ -21,6 +20,12 @@ class HomeFilterDropdown extends StatefulWidget {
 }
 
 class HomeFilterDropdownState extends State<HomeFilterDropdown> {
+  List<String> dropdownItems = [
+    'All tasks',
+    'Completed',
+    'Incomplete',
+  ];
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -43,7 +48,7 @@ class HomeFilterDropdownState extends State<HomeFilterDropdown> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                contents[widget.currentIndex],
+                dropdownItems[widget.currentIndex],
                 style: GoogleFonts.poppins(
                   fontSize: 16,
                   color: kMainBackground,
@@ -73,7 +78,7 @@ class HomeFilterDropdownState extends State<HomeFilterDropdown> {
             children: [
               _buildListItem(
                 context,
-                title: contents[0],
+                title: dropdownItems[0],
                 leading: SvgPicture.asset(
                   'assets/icons/list-icon.svg',
                   height: 26,
@@ -82,7 +87,7 @@ class HomeFilterDropdownState extends State<HomeFilterDropdown> {
               ),
               _buildListItem(
                 context,
-                title: contents[1],
+                title: dropdownItems[1],
                 leading: SvgPicture.asset(
                   'assets/icons/checked-icon.svg',
                   height: 26,
@@ -91,7 +96,7 @@ class HomeFilterDropdownState extends State<HomeFilterDropdown> {
               ),
               _buildListItem(
                 context,
-                title: contents[2],
+                title: dropdownItems[2],
                 leading: SvgPicture.asset(
                   'assets/icons/unchecked-icon.svg',
                   height: 26,
@@ -115,11 +120,11 @@ class HomeFilterDropdownState extends State<HomeFilterDropdown> {
 
     return InkWell(
       onTap: () {
-        widget.refresh(contents.indexOf(title.toString()));
+        widget.refresh(dropdownItems.indexOf(title.toString()));
         Navigator.pop(context);
       },
       child: Container(
-        padding: EdgeInsets.symmetric(
+        padding: const EdgeInsets.symmetric(
           horizontal: 24.0,
           vertical: 16.0,
         ),
@@ -141,12 +146,12 @@ class HomeFilterDropdownState extends State<HomeFilterDropdown> {
                   horizontal: 16.0,
                 ),
                 child: DefaultTextStyle(
-                  child: Text(title),
                   style: GoogleFonts.poppins(
                     color: kSecondaryColor,
                     fontSize: 18,
                     fontWeight: FontWeight.w500,
                   ),
+                  child: Text(title),
                 ),
               ),
           ],

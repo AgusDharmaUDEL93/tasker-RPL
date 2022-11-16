@@ -32,7 +32,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
                 child: SvgPicture.asset(
                   'assets/icons/darkmode-icon.svg',
                   height: 20,
-                  color: kPrimaryColor,
+                  color: kSecondaryColor,
                 ),
               ),
             ),
@@ -40,7 +40,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
           Text(
             '${DateFormat('EEEE').format(DateTime.now())}, ${DateFormat('d').format(DateTime.now())}',
             style: GoogleFonts.poppins(
-              color: kPrimaryColor,
+              color: kSecondaryColor,
               fontWeight: FontWeight.w600,
               fontSize: 18,
             ),
@@ -59,7 +59,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
                 child: SvgPicture.asset(
                   'assets/icons/search-icon.svg',
                   height: 30,
-                  color: kPrimaryColor,
+                  color: kSecondaryColor,
                 ),
               ),
             ),

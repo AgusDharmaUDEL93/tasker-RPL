@@ -9,12 +9,6 @@ import '../../../../../core/injector/injector.dart';
 import '../../../../../core/utils/constants.dart';
 import '../components/home_appbar.dart';
 
-List<String> contents = [
-  'All tasks',
-  'Completed',
-  'Incomplete',
-];
-
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -23,8 +17,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int currentIndex = 0;
   final TaskController taskController = serviceLocator.get<TaskController>();
+  int homeSelectedFilter = 0;
 
   @override
   void initState() {
@@ -53,7 +47,7 @@ class _HomePageState extends State<HomePage> {
       body: SizedBox(
         width: MediaQuery.of(context).size.width,
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+          padding: const EdgeInsets.fromLTRB(15, 30, 15, 0),
           child: SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
             child: Column(
@@ -71,13 +65,13 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                     HomeFilterDropdown(
-                      currentIndex: currentIndex,
+                      currentIndex: homeSelectedFilter,
                       refresh: refresh,
                     ),
                   ],
                 ),
                 const SizedBox(height: 15),
-                HomeTaskListBuilder(currentIndex: currentIndex),
+                HomeTaskListBuilder(homeSelectedFilter: homeSelectedFilter),
                 const SizedBox(height: 40),
               ],
             ),
@@ -89,7 +83,7 @@ class _HomePageState extends State<HomePage> {
 
   refresh(int index) {
     setState(() {
-      currentIndex = index;
+      homeSelectedFilter = index;
     });
   }
 }

@@ -44,7 +44,10 @@ class _ManageTaskPageState extends State<ManageTaskPage> {
   Widget build(BuildContext context) {
     isEditing = widget.task != null;
     return Scaffold(
-      appBar: CustomAppBarWidget(title: isEditing ? 'Edit Task' : 'Add Task'),
+      appBar: CustomAppBarWidget(
+        title: isEditing ? 'Edit Task' : 'Add Task',
+        trailing: null,
+      ),
       body: Padding(
         padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
         child: SingleChildScrollView(
@@ -100,6 +103,9 @@ class _ManageTaskPageState extends State<ManageTaskPage> {
                           _showAlertDialog(context);
                         } else {
                           Navigator.pop(context);
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            showSnackBar(),
+                          );
                         }
                       }
                     },
@@ -120,10 +126,28 @@ class _ManageTaskPageState extends State<ManageTaskPage> {
     );
   }
 
+  showSnackBar() {
+    return SnackBar(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      content: Text(
+        isEditing ? 'Task saved successfully' : 'Task created successfully',
+        style: GoogleFonts.poppins(
+          fontWeight: FontWeight.w500,
+          fontSize: 16,
+        ),
+      ),
+      duration: const Duration(seconds: 2),
+      backgroundColor: kSecondaryColor,
+      margin: const EdgeInsets.all(10),
+      elevation: 2,
+      behavior: SnackBarBehavior.floating,
+    );
+  }
+
   _showAlertDialog(BuildContext context) {
     return showDialog(
       context: context,
-      barrierDismissible: false,
+      barrierDismissible: true,
       builder: (BuildContext context) {
         return AlertDialog(
           contentPadding: const EdgeInsets.only(top: 10.0),
