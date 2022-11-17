@@ -1,17 +1,33 @@
-# tasker
+# Tasker
 
-A new Flutter project.
+Tasker is a Task Management mobile application developed using Flutter. This project was originally created to learn how to implement Clean Architecture concepts in a real project. Also, messing with some packages as I advanced further into the logic was a plus.
 
-## Getting Started
+## Install, build and run
 
-This project is a starting point for a Flutter application.
+To run this project locally, clone this repository and, navigate into the directory: 
 
-A few resources to get you started if this is your first Flutter project:
+```
+# Clone this repository
+$ git clone https://github.com/e-meyer/tasker.git
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+# Go into de repository
+$ cd tasker
+```
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Then, to get the project's dependencies, run:
+
+```
+# Get dependencies
+$ flutter pub get
+```
+
+After that, run the ```main.dart``` file in your IDE.
+
+## Pub.dev Packages
+
+- [Hive](https://pub.dev/packages/hive)
+  > Store the user's data locally. Because of it's high performance (and some curiosity) I've chosen this package to store the data. Up until this moment, I've only used SharedPreferences and SQFlite to deal with local data, so I wanted to try something else.   
+- [get_it](https://pub.dev/packages/get_it)
+  > Writing this project and using a dependency injection package was the moment I realised how important it is to have a package for that. 
+  
 ****
