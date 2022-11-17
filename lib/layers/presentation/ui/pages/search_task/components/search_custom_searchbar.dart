@@ -59,7 +59,8 @@ class _CustomSearchBarState extends State<CustomSearchBar> {
       children: [
         Expanded(
           child: TextField(
-            onChanged: (string) => widget.refresh(string),
+            onChanged: (string) => widget.refresh(string,
+                firstDate: widget.startDate, secondDate: widget.endDate),
             cursorColor: kPrimaryColor,
             style: GoogleFonts.poppins(
               fontSize: 16,
